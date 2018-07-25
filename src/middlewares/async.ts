@@ -7,7 +7,7 @@ interface IAsyncAction extends Action {
 export default ({ dispatch }: { dispatch: Dispatch }) => (
   next: (action: IAsyncAction) => void
 ) => (action: IAsyncAction) => {
-  if (action.payload.then) {
+  if (action.payload && action.payload.then) {
     console.log('promise');
     action.payload.then(response =>
       dispatch({ ...action, payload: response })
